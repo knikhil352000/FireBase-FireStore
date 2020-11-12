@@ -16,7 +16,12 @@ function renderCafe(doc){
     li.appendChild(cross);
     cafeList.appendChild(li);
 
-    //
+    //delete data
+    cross.addEventListener('click', function(e){
+        e.stopPropagation();
+        let id = e.target.parentElement.getAttribute('data-id');
+        db.collection('cafes').doc(id).delete();
+    })
 }
 
 db.collection('cafes').get().then((snapshot) => {
